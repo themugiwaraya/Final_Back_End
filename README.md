@@ -166,6 +166,7 @@ ai_startup/
 │   ├── config.py          # Environment-based configuration
 │   ├── models.py          # MongoDB models
 │   ├── routes.py          # API endpoints
+│   ├── helpers.py         # Hash password
 │   └── services/
 │       └── ollama_service.py  # Ollama API integration
 ├── frontend/              # Frontend files
