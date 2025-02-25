@@ -1,5 +1,8 @@
 # AI Startup Idea Generator
 
+## Link to GitHub
+https://github.com/themugiwaraya/Final_Back_End.git
+
 This is a Flask-based web application that generates startup ideas using AI (Ollama). The project includes user authentication, idea generation, history tracking, and feedback management.
 
 ## Table of Contents
