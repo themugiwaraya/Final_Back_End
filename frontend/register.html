@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/favicon.png">
+</head>
+
+<body>
+    <img class="wave" src="img/wave.svg">
+    <div class="container">
+        <div class="img">
+            <img src="img/login-mobile.svg">
+        </div>
+        <div class="login-container">
+            <form id="register-form">
+                <h2>Register</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <h5>Username</h5>
+                        <input class="input" type="text" id="reg-username" required>
+                    </div>
+                </div>
+                <div class="input-div two">
+                    <div class="i">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h5>Email</h5>
+                        <input class="input" type="email" id="reg-email" required>
+                    </div>
+                </div>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div>
+                        <h5>Password</h5>
+                        <input class="input" type="password" id="reg-password" required>
+                    </div>
+                </div>
+                <div class="input-div two">
+                    <div class="i">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div>
+                        <h5>Confirm Password</h5>
+                        <input class="input" type="password" id="confirm-password" required>
+                    </div>
+                </div>
+                <div class="terms">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I agree to the </label><a id="action-modal">terms of use.</a>
+                </div>
+                <button type="submit" class="btn">Register</button>
+                <div class="account">
+                    <p>Already have an account?</p>
+                    <a href="login.html">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('register-form').addEventListener('submit', async function(event) {
+          event.preventDefault();
+          const username = document.getElementById('reg-username').value;
+          const email = document.getElementById('reg-email').value;
+          const password = document.getElementById('reg-password').value;
+          const confirmPassword = document.getElementById('confirm-password').value;
+          
+          if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+          }
+          
+          const response = await fetch("https://final-back-end-fym2.onrender.com/register", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ username, email, password })
+          });
+          const result = await response.json();
+          alert(result.message);
+          if (response.ok) {
+            window.location.href = "login.html";
+          }
+        });
+    
+        document.querySelectorAll('#register-form .input').forEach(input => {
+          input.addEventListener('focus', function() {
+            let label = this.parentElement.querySelector('h5');
+            if (label) {
+              label.style.display = 'none';
+            }
+          });
+          input.addEventListener('blur', function() {
+            let label = this.parentElement.querySelector('h5');
+            if (label && !this.value.trim()) {
+              label.style.display = 'block';
+            }
+          });
+        });
+    </script>
+</body>
+</html>
