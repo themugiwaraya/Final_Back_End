@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const newCategoryNameInput = document.getElementById("newCategoryName");
   const newCategoryMessage = document.getElementById("newCategoryMessage");
 
-  const API_URL = "https://final-back-end-fym2.onrender.com"; 
+  const API_URL = "https://final-back-end-adp2.onrender.com"; 
   let accessToken = localStorage.getItem("token");
 
   if (!accessToken) {
